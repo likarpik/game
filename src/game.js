@@ -22,11 +22,7 @@ class Game extends Phaser.Scene {
             frameRate: 10,
             repeat: -1,
         });
-        this.anims.create({
-            key: "stop",
-            frames: this.anims.generateFrameNumbers("player", {start: 0, end: 0}),
-            repeat: -1,
-        });
+    
         this.add.text(20, 20, "Game..");
         this.player.play("run");
 
