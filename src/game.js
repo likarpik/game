@@ -9,8 +9,8 @@ class Game extends Phaser.Scene {
     }
 
     create() {
-        this.background = this.add.image(0, 0, "background");
-        this.background.setOrigin(0,0);
+        this.background = this.add.tileSprite(400, 300, 800, 600, "background");
+        //this.background.setOrigin(0,0);
         this.player = this.physics.add.sprite(20, 500, "player");
         this.player.getBounds();
         this.player.setBounce(0.2);
@@ -27,14 +27,16 @@ class Game extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers("player", {start: 0, end: 0}),
             repeat: -1,
         });
-        this.add.text(20, 20, "Loading Game..");
+        this.add.text(20, 20, "Game..");
         this.player.play("run");
+
 
         this.cursorKeys = this.input.keyboard.createCursorKeys();
     }
 
     update() {
         this.movePlayerManager();
+        this.background.tilePositionX += 5;
     }
 
     movePlayerManager=()=>{
