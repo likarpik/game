@@ -54,7 +54,7 @@ class Game extends Phaser.Scene {
             bomb.setScale(this.bombScale);
             bomb.setCircle(5);
             bomb.anims.play("boom", true);
-            bomb.setBounceY(0.2);
+            bomb.setBounceY(1.2);
             this.bombs.setVelocityX(Phaser.Math.Between(-1000, -300));
         };
 
