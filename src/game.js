@@ -50,7 +50,7 @@ class Game extends Phaser.Scene {
 
         function onEvent1() {
             this.timedEvent1.reset({ delay: Phaser.Math.Between(3000,5000), callback: onEvent1, callbackScope: this, loop: true});
-            let bomb = this.bombs.create(800, Phaser.Math.Between(300, 485), "bomb");
+            let bomb = this.bombs.create(800, Phaser.Math.Between(0, 485), "bomb");
             bomb.setScale(this.bombScale);
             bomb.setCircle(5);
             bomb.anims.play("boom", true);
