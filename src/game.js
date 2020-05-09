@@ -1,14 +1,14 @@
 class Game extends Phaser.Scene {
     constructor() {
         super("Game");
-        this.bombScale = 4;
+        this.bombScale = 0.3;
     }
 
     preload() {
-        this.load.image("background", "assets/backgr.jpg");
+        this.load.image("background", "assets/Fon_sim1.jpg");
         this.load.image("ground", "assets/Trava.png");
         this.load.spritesheet("player", "assets/pers.png", {frameWidth: 64, frameHeight: 64});
-        this.load.spritesheet("bomb", "assets/bombs.png", {frameWidth: 14.5, frameHeight: 12});
+        this.load.spritesheet("bomb", "assets/ghost.png", {frameWidth: 314, frameHeight: 296});
     }
 
     create() {
@@ -34,7 +34,7 @@ class Game extends Phaser.Scene {
         });
         this.anims.create({
             key: "boom",
-            frames: this.anims.generateFrameNumbers("bomb", { start: 0, end: 3 }),
+            frames: this.anims.generateFrameNumbers("bomb", { start: 0, end: 1 }),
             frameRate: 10,
             repeat: -1
           });
@@ -50,12 +50,12 @@ class Game extends Phaser.Scene {
 
         function onEvent1() {
             this.timedEvent1.reset({ delay: Phaser.Math.Between(500,1000), callback: onEvent1, callbackScope: this, loop: true});
-            let bomb = this.bombs.create(800, Phaser.Math.Between(300, 580), "bomb");
+            let bomb = this.bombs.create(800, Phaser.Math.Between(100, 540), "bomb");
             bomb.setScale(this.bombScale);
-            bomb.setCircle(10);
+            bomb.setCircle(5);
             bomb.anims.play("boom", true);
             bomb.setBounceY(1.2);
-            this.bombs.setVelocityX(Phaser.Math.Between(-10000, -5000));
+            this.bombs.setVelocityX(Phaser.Math.Between(-1000, -500));
         };
 
         this.physics.add.collider(this.player, this.bombs);
