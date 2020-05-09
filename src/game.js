@@ -6,22 +6,28 @@ class Game extends Phaser.Scene {
 
     preload() {
         this.load.image("background", "assets/Fon_sim1.jpg");
+        this.load.image("liany", "assets/Liany.png");
         this.load.image("ground", "assets/Trava.png");
+        this.load.image("back_2", "assets/back_2.png");
         this.load.spritesheet("player", "assets/pers.png", {frameWidth: 64, frameHeight: 64});
         this.load.spritesheet("bomb", "assets/ghost.png", {frameWidth: 314, frameHeight: 296});
     }
 
     create() {
         this.background = this.add.tileSprite(400, 300, 800, 600, "background");
+        this.liany = this.add.tileSprite(400, 0, 800, 300, "liany");
+        this.physics.add.existing(this.liany);
+        this.liany.body.immovable = true;
+        this.liany.body.moves = false;
         this.ground = this.add.tileSprite(400, 575, 800, 100, "ground");
         this.physics.add.existing(this.ground);
         this.ground.body.immovable = true;
         this.ground.body.moves = false;
         //this.background.setOrigin(0,0);
-        this.player = this.physics.add.sprite(20, 526, "player");
+        this.player = this.physics.add.sprite(20, 500, "player");
         this.physics.world.enable(this.player);
         this.physics.world.enable(this.ground);
-        this.player.body.gravity.y = 74;
+        this.player.body.gravity.y = 100;
         this.player.getBounds();
         this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
@@ -57,13 +63,15 @@ class Game extends Phaser.Scene {
             bomb.setBounceY(1.2);
             this.bombs.setVelocityX(Phaser.Math.Between(-1000, -500));
         };
-
+        
         this.physics.add.collider(this.player, this.bombs);
+        this.physics.add.collider(this.player, this.liany);
     }
 
     update = () => {
         this.movePlayerManager();
         this.background.tilePositionX += 5;
+        this.liany.tilePositionX += 5;
         this.ground.tilePositionX += 5;
     }
 
