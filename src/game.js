@@ -7,7 +7,7 @@ class Game extends Phaser.Scene {
     preload() {
         this.load.image("background", "assets/Fon_sim1.jpg");
         this.load.image("liany", "assets/Liany.png");
-        this.load.image("ground", "assets/Trava.png");
+        this.load.image("ground", "assets/Trava2.png");
         this.load.image("back_2", "assets/back_2.png");
         this.load.spritesheet("player", "assets/pers.png", {frameWidth: 64, frameHeight: 64});
         this.load.spritesheet("bomb", "assets/ghost.png", {frameWidth: 314, frameHeight: 296});
@@ -20,7 +20,7 @@ class Game extends Phaser.Scene {
         this.physics.add.existing(this.liany);
         this.liany.body.immovable = true;
         this.liany.body.moves = false;
-        this.ground = this.add.tileSprite(400, 575, 800, 100, "ground");
+        this.ground = this.add.tileSprite(400, 580, 800, 100, "ground");
         this.physics.add.existing(this.ground);
         this.ground.body.immovable = true;
         this.ground.body.moves = false;
