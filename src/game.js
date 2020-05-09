@@ -14,6 +14,7 @@ class Game extends Phaser.Scene {
     }
 
     create() {
+        //this.physics.resume();
         this.background = this.add.tileSprite(400, 300, 800, 600, "background");
         this.liany = this.add.tileSprite(400, 0, 800, 300, "liany");
         this.physics.add.existing(this.liany);
@@ -63,8 +64,17 @@ class Game extends Phaser.Scene {
             bomb.setBounceY(1.2);
             this.bombs.setVelocityX(Phaser.Math.Between(-1000, -500));
         };
+
+        function hit(player){
+            this.physics.pause();
+            this.timedEvent1.paused = true;
+            this.player.setTint(0xff0000);
+            this.scene.start("Game");
+
+        };
         
-        this.physics.add.collider(this.player, this.bombs);
+        this.physics.add.collider(this.player, this.bombs, hit, null, this);
+        
         this.physics.add.collider(this.player, this.liany);
     }
 
