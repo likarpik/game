@@ -81,7 +81,7 @@ class Game extends Phaser.Scene {
             this.player.flipX = false;
         }
         else if (this.cursorKeys.left.isDown) {
-            this.player.setVelocityX(-200);
+            this.player.setVelocityX(-300);
             this.player.flipX = true;
         }
         else {
