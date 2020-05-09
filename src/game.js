@@ -79,7 +79,7 @@ class Game extends Phaser.Scene {
         else {
             this.player.setVelocityX(0);
         }
-        if (this.cursorKeys.up.isDown){ //&& this.player.body.touching.down){
+        if (this.cursorKeys.up.isDown && this.player.body.onFloor()){ //&& this.player.body.touching.down){
             this.player.setVelocityY(-1000);
         }
     }
