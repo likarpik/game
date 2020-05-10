@@ -2,6 +2,7 @@ class Game extends Phaser.Scene {
     constructor() {
         super("Game");
         this.bombScale = 0.3;
+        this.score = 0;
     }
 
     preload() {
@@ -48,7 +49,6 @@ class Game extends Phaser.Scene {
     
         this.bombs = this.physics.add.group();
         this.timedEvent1 = this.time.addEvent({ delay: 3000, callback: onEvent1, callbackScope: this, loop: true});
-        this.add.text(20, 20, "Game..");
         this.player.play("run");
 
 
@@ -69,6 +69,7 @@ class Game extends Phaser.Scene {
             this.physics.pause();
             this.timedEvent1.paused = true;
             this.player.setTint(0xff0000);
+            this.score = 0;
             this.scene.start("Game");
 
         };
@@ -76,10 +77,14 @@ class Game extends Phaser.Scene {
         this.physics.add.collider(this.player, this.bombs, hit, null, this);
         
         this.physics.add.collider(this.player, this.liany);
+
+        this.scoreText = this.add.text(16, 16, 'SCORE: 0', { fontSize: '32px', fill: '#FFFFFF' });
     }
 
     update = () => {
         this.movePlayerManager();
+        this.score += 5;
+        this.scoreText.setText('SCORE: ' + this.score);
         this.background.tilePositionX += 5;
         this.liany.tilePositionX += 5;
         this.ground.tilePositionX += 5;
