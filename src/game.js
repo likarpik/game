@@ -12,6 +12,8 @@ class Game extends Phaser.Scene {
         this.load.image("back_2", "assets/back_2.png");
         this.load.spritesheet("player", "assets/pers.png", {frameWidth: 64, frameHeight: 64});
         this.load.spritesheet("bomb", "assets/ghost.png", {frameWidth: 314, frameHeight: 296});
+        this.load.audio("music", "assets/nightwish.mp3");
+        this.load.audio("death", "assets/death.mp3");
     }
 
     create() {
@@ -34,6 +36,9 @@ class Game extends Phaser.Scene {
         this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
         this.player.setScale(2);
+        let music = this.sound.add("music");
+        music.setLoop(true);
+        music.play();
         this.anims.create({
             key: "run",
             frames: this.anims.generateFrameNumbers("player", {start: 1, end: 6}),
@@ -67,6 +72,9 @@ class Game extends Phaser.Scene {
 
         function hit(player){
             this.physics.pause();
+            music.stop();
+            let death = this.sound.add("death");
+            death.play();
             this.timedEvent1.paused = true;
             this.player.setTint(0xff0000);
             this.score = 0;
@@ -83,7 +91,7 @@ class Game extends Phaser.Scene {
 
     update = () => {
         this.movePlayerManager();
-        this.score += 5;
+        this.score += 1;
         this.scoreText.setText('SCORE: ' + this.score);
         this.background.tilePositionX += 5;
         this.liany.tilePositionX += 5;
