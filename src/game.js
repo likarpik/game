@@ -1,7 +1,7 @@
 class Game extends Phaser.Scene {
     constructor() {
         super("Game");
-        this.bombScale = 0.3;
+        this.bombScale = 0.25;
         this.score = 0;
     }
 
@@ -100,11 +100,11 @@ class Game extends Phaser.Scene {
 
     movePlayerManager=()=>{
         if(this.cursorKeys.right.isDown){
-            this.player.setVelocityX(200);
+            this.player.setVelocityX(300);
             this.player.flipX = false;
         }
         else if (this.cursorKeys.left.isDown) {
-            this.player.setVelocityX(-300);
+            this.player.setVelocityX(-400);
             this.player.flipX = true;
         }
         else {
