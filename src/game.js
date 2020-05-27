@@ -7,7 +7,7 @@ class Game extends Phaser.Scene {
 
     preload() {
         this.load.image("background", "assets/Fon_sim1.jpg");
-        this.load.image("liany", "assets/Liany.png");
+        this.load.image("liany", "assets/liany_2.png");
         this.load.image("ground", "assets/Trava2.png");
         this.load.image("back_2", "assets/back_2.png");
         this.load.spritesheet("player", "assets/pers.png", {frameWidth: 64, frameHeight: 64});
@@ -19,7 +19,7 @@ class Game extends Phaser.Scene {
     create() {
         //this.physics.resume();
         this.background = this.add.tileSprite(400, 300, 800, 600, "background");
-        this.liany = this.add.tileSprite(400, 0, 800, 300, "liany");
+        this.liany = this.add.tileSprite(400, 100, 800, 300, "liany");
         this.physics.add.existing(this.liany);
         this.liany.body.immovable = true;
         this.liany.body.moves = false;
@@ -61,13 +61,13 @@ class Game extends Phaser.Scene {
         //this.physics.add.collider(this.player, this.ground);
 
         function onEvent1() {
-            this.timedEvent1.reset({ delay: Phaser.Math.Between(500,1000), callback: onEvent1, callbackScope: this, loop: true});
+            this.timedEvent1.reset({ delay: Phaser.Math.Between(800,1000), callback: onEvent1, callbackScope: this, loop: true});
             let bomb = this.bombs.create(800, Phaser.Math.Between(100, 540), "bomb");
             bomb.setScale(this.bombScale);
             bomb.setCircle(5);
             bomb.anims.play("boom", true);
             bomb.setBounceY(1.2);
-            this.bombs.setVelocityX(Phaser.Math.Between(-1000, -500));
+            this.bombs.setVelocityX(Phaser.Math.Between(-800, -500));
         };
 
         function hit(player){
@@ -110,12 +110,8 @@ class Game extends Phaser.Scene {
         else {
             this.player.setVelocityX(0);
         }
-        if (this.cursorKeys.up.isDown && this.player.body.onFloor()){ //&& this.player.body.touching.down){
-            this.player.setVelocityY(-1000);
+        if (this.cursorKeys.up.isDown && this.player.body.onFloor()){ 
+            this.player.setVelocityY(-1200);
         }
-        if(this.cursorKeys.down.isDown && (!this.player.body.onFloor())){
-            this.player.setVelocityY(1000);
-        }
-        
     }
 } 

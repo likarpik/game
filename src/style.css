@@ -3,5 +3,17 @@ body {
     margin-top: 50px;
     margin-left: 350px;
     background-image: url(https://avatars.mds.yandex.net/get-pdb/1720846/811167bf-b21a-4174-9640-fce8263a0497/s1200);
-    border: 2px solid black;
+}
+
+h2{
+    width: 100vw;
+    margin-top: -50px;
+    color: white;
+    text-transform: uppercase;
+    margin-left: 300px;
+}
+
+h3{
+    color: white;
+    margin-top: -20px;
 }
